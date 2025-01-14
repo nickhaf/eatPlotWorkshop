@@ -1,0 +1,196 @@
+---
+title: "Einführung in eatPlot"
+author: "Nicklas Hafiz"
+title-slide-attributes:
+  data-background-image: ./images/eatPlot.svg
+  data-background-size: 30%
+  data-background-repeat: no-repeat
+  data-background-position: bottom 30px center
+  data-background-opacity: "0"
+format: 
+  letterbox-revealjs:
+    embed-resources: false
+    theme: styles.scss
+    highlight-style: dark.theme
+code-link: true
+code-line-numbers: false
+execute:
+  echo: true
+callout-appearance: simple
+lang: de
+categories: [eatPlot, tutorial, slides, intro]
+image: ./images/eatPlot.svg
+---
+
+## Zu diesen Folien
+
+HTML-Folien können durch tippen von `e` in PDF umgewandelt werden, und dann mit Drucken aus dem Browser abgespeichert werden, falls ihr darin kommentieren wollt.
+
+![](./images/print_html.PNG)
+
+##  {background-image="images/map.jpg" background-size="1225px"}
+
+::: {.absolute left="10%" right="10%" top="7.5%" style="font-size:1em; padding: 0.5em 0.5em; background-color: rgba(255, 255, 255, .7); backdrop-filter: blur(5px); box-shadow: 0 0 1rem 0 rgba(255, 255, 255, .5); border-radius: 10px"}
+
+**Roadmap**
+
+1. Einführung
+1. Allgemeiner Workflow
+1. Linienplots
+1. Tabellen/Barplots
+:::
+
+## eatPlot
+
+```{r}
+#| eval: false
+# install.packages("devtools")
+devtools::install_github("nickhaf/eatPlot")
+```
+
+```{r}
+library(eatPlot)
+```
+
+
+- Automatisieren der Grafikerstellung für eatRep-Output
+- BT-Grafiken!
+
+:::{.callout-important}
+Das Paket befindet sich noch in Entwicklung. Falls euch Bugs auffallen, bitte Melden! Ich kümmere mich schnellstmöglich drum. 
+:::
+
+
+## Vorteile
+
+- Schneller Zugang zu komplexen BT-Visualisierungen und Tabellen
+- Vereinheitlichung der BT-Plots
+- Leichtes Updaten bei Änderungen in den Plots und/oder Daten
+- Nachvollziehbarkeit/Version Control
+- Weniger Checks nötig, da Werte automatisch eingelesen werden
+
+## Nachteile
+
+- Gerade zu Beginn etwas mehr Arbeit für Kapitelautor*innen 
+  - Aber: "Plug-and-Play"-Vorlagen, weniger Überarbeitungsschleifen und Kontrollen
+
+## Vorlagen
+
+Vignetten, Tutorials sowie Vorlagen zur Erstellung finden sich auf der [Webseite](https://nickhaf.github.io/eatPlot/)
+
+
+
+# Allgemeiner Workflow
+
+## Datenformat
+
+```{r}
+str(trend_3)
+```
+
+
+## Datenaufbereitung
+
+Es gibt zwei Prep-Funktionen:
+
+```{r}
+lineplot_prepped <- prep_lineplot(trend_3, subgroup_var = "mhg")
+```
+
+```{r}
+tableplot_prepped <- prep_tablebarplot(trend_3, subgroup_var = "mhg")
+```
+
+## Datenaufbereitung
+```{r}
+str(lineplot_prepped)
+```
+
+
+## Datenaufbereitung
+```{r}
+str(tableplot_prepped)
+```
+
+
+
+## Ploterstellung
+
+## Bonus: Plot_settings
+
+
+
+# Linienplots
+
+
+## Datenaufbereitung
+
+:::{.callout-warning}
+
+Bitte lest die Daten aus dem `eatRep`-Workshop ein:
+
+```{r}
+#| eval: false
+trend_dat <- readRDS("I:/Methoden/02_IQB-interne_eat_Workshops/eatRep_2024/Beispieloutputs/04_meansAufbereitet.rds")
+
+```
+
+:::
+
+## Plot-Erstellung
+
+## Plot-Settings
+
+
+# Tabellen/Barplots
+
+## Datenaufbereitung
+
+
+
+## Datenaufbereitung
+```{r}
+#| eval: false
+trend_p <- prep_lineplot(
+  trend_dat
+)
+
+trend_p$TR_BUNDESLAND <- gsub("([a-z])([A-Z])", "\\1-\\2", trend_p$TR_BUNDESLAND)
+trend_p$TR_BUNDESLAND <- gsub("ue", "ü", trend_p$TR_BUNDESLAND)
+
+```
+
+
+## Plot-Erstellung
+
+```{r}
+#| eval: FALSE
+
+
+lineplot_1_w <- plot_lineplot(
+  trend_p,
+  years_lines = list(c(2009, 2015), c(2015, 2022)),
+  years_braces = list(c(2009, 2015), c(2015, 2022)),
+  box_facet = "Berlin",
+  background_subgroup = "total",
+  title_superscripts = list(
+    "Bayern" = "a",
+    "Thüringen" = "3"),
+  plot_settings = plotsettings_lineplot(default_list = lineplot_4x4)
+)
+```
+
+## Abspeichern
+
+```{r save lineplot_1_group_w}
+#| eval: false
+save_plot(lineplot_1_w, filename = "C:/Users/hafiznij/Downloads/lineplot_1_group_workshop.pdf")
+```
+
+## Plot-Settings
+
+
+
+
+
+
