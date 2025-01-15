@@ -137,16 +137,6 @@ trend_dat <- readRDS("I:/Methoden/02_IQB-interne_eat_Workshops/eatRep_2024/Beisp
 
 :::
 
-## Plot-Erstellung
-
-## Plot-Settings
-
-
-# Tabellen/Barplots
-
-## Datenaufbereitung
-
-
 
 ## Datenaufbereitung
 ```{r}
@@ -193,4 +183,202 @@ save_plot(lineplot_1_w, filename = "C:/Users/hafiznij/Downloads/lineplot_1_group
 
 
 
+# Tabellen/Barplots
 
+## Datenaufbereitung
+:::{.callout-warning}
+
+Bitte lest die Daten aus dem `eatRep`-Workshop ein:
+
+```{r}
+#| eval: false
+trend_dat_geschlecht <- readRDS("I:/Methoden/02_IQB-interne_eat_Workshops/eatRep_2024/Beispieloutputs/disp_geschlecht.rds")
+
+```
+
+:::
+
+## Datenaufbereitung
+```{r}
+mw_sub <- trend_mw
+
+dat_prepped <- prep_tablebarplot(
+  trend_dat_geschlecht,
+  subgroup_var = "Kgender",
+  par = c("mean", "sd"),
+  facet_var = "TR_BUNDESLAND",
+  total_facet = "total",
+  comparisons = c("none", "trend", "trend_crossDiff")
+)
+```
+
+
+```{r}
+dat_prepped <- subset(dat_prepped, Kgender %in% c("maennlich", "weiblich"))
+dat_prepped$Kgender <- gsub("maennlich", "Jungen", dat_prepped$Kgender)
+dat_prepped$Kgender <- gsub("weiblich", "Mädchen", dat_prepped$Kgender)
+
+dat_prepped_a <- dat_prepped[order(dat_prepped$TR_BUNDESLAND), ]
+
+dat_prepped_a$TR_BUNDESLAND[duplicated(dat_prepped_a$TR_BUNDESLAND)] <- " "
+dat_prepped_a$TR_BUNDESLAND <- gsub("total", "Deutschland", dat_prepped_a$TR_BUNDESLAND)
+dat_prepped_a$TR_BUNDESLAND <- gsub("ue", "ü", dat_prepped_a$TR_BUNDESLAND)
+
+
+column_widths_stand <- standardize_column_width(
+  column_widths = list(
+    p1 = c(0.1, rep(0.04, 7), 0.05, rep(0.04, 2), NA),
+    p2 = c(0.05, rep(0.04, 2), NA)
+  ),
+  plot_ranges = c(60, 45) # Range of the x-axes of both plots set in 'axis_x_lims'.
+)
+```
+
+
+```{r}
+p_1 <- plot_tablebarplot(
+  dat = dat_prepped_a,
+  bar_est = "est_2015 - 2009_trend_mean",
+  bar_label = NULL,
+  bar_sig = "sig_2015 - 2009_trend_mean",
+  bar_fill = "Kgender",
+  y_axis = "y_axis",
+  column_spanners = list(
+    "**2009**<sup>a</sup>" = c(3, 4),
+    "**2015**<sup>a</sup>" = c(5, 6),
+    "**2022**<sup>a</sup>" = c(7, 8),
+    "**Differenz 2015-2009<sup>a</sup>**" = c(9, 12)
+  ),
+  columns_table_se = list(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "se_2015 - 2009_trend_mean", NULL),
+  headers = list(
+    "**Land**",
+    " ",
+    "*M*",
+    "*SD*",
+    "*M*",
+    "*SD*",
+    "*M*",
+    "*SD*",
+    "*M<sub>2015</sub> - M<sub>2009</sub>*",
+    "*(SE)*",
+    "*d*",
+    " "
+  ),
+  columns_table = c(
+    "TR_BUNDESLAND",
+    "Kgender",
+    "est_2009_none_mean",
+    "est_2009_none_sd",
+    "est_2015_none_mean",
+    "est_2015_none_sd",
+    "est_2022_none_mean",
+    "est_2022_none_sd",
+    "est_2015 - 2009_trend_mean",
+    "se_2015 - 2009_trend_mean",
+    "es_2015 - 2009_trend_mean"
+  ),
+  columns_table_sig_bold = list(
+    NULL,
+    NULL,
+    "sig_2009_none_mean",
+    NULL,
+    "sig_2015_none_mean",
+    NULL,
+    "sig_2022_none_mean",
+    NULL,
+    "sig_2015 - 2009_trend_mean",
+    NULL,
+    "sig_2015 - 2009_trend_mean"
+  ),
+  columns_table_sig_superscript = list(
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    "sig_2015 - 2009_trend_crossDiffTotal_mean",
+    NULL,
+    NULL
+  ),
+  columns_round = c(rep(0, 10), 2),
+  plot_settings = plotsettings_tablebarplot(
+    axis_x_lims = c(-30, 30),
+    background_stripes_colour = c(rep(c("white", "white", "#EBFDF3", "#EBFDF3"), 8), "grey", "grey"),
+    bar_fill_colour = c("#20D479", "#8DEBBC"),
+    bar_background_lines = "scale_breaks",
+    bar_background_lines_linetype = "dotted",
+    bar_pattern_spacing = 0.0154,
+    columns_alignment = c(0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 2, 0.5, 2),
+    columns_width = column_widths_stand$p1,
+    headers_alignment = c(0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0),
+    default_list = barplot_table_plot_pattern
+  )
+)
+
+p_2 <- plot_tablebarplot(
+  dat = dat_prepped_a,
+  bar_est = "est_2022 - 2015_trend_mean",
+  bar_label = NULL,
+  bar_sig = "sig_2022 - 2015_trend_mean",
+  bar_fill = "Kgender",
+  column_spanners = list(
+    "**Differenz 2022-2015**" = c(1, 4)
+  ),
+  headers = list(
+    "*M<sub>2022</sub> - M<sub>2015</sub>*",
+    "*(SE)*",
+    "*d*",
+    " "
+  ),
+  columns_table = c(
+    "est_2022 - 2015_trend_mean",
+    "se_2022 - 2015_trend_mean",
+    "es_2022 - 2015_trend_mean"
+  ),
+  columns_table_se = list(NULL, "se_2022 - 2015_trend_mean", NULL),
+  columns_table_sig_bold = list(
+    "sig_2022 - 2015_trend_mean",
+    NULL,
+    "sig_2022 - 2015_trend_mean"
+  ),
+  columns_table_sig_superscript = list(
+    "sig_2022 - 2015_trend_crossDiffTotal_mean",
+    NULL,
+    NULL
+  ),
+  y_axis = "y_axis",
+  columns_round = c(0, 0, 2),
+  plot_settings = plotsettings_tablebarplot(
+    axis_x_lims = c(-40, 5),
+    bar_background_lines = "scale_breaks",
+    bar_background_lines_linetype = "dotted",
+    background_stripes_colour = c(rep(c("white", "white", "#EBFDF3", "#EBFDF3"), 8), "grey", "grey"),
+    bar_fill_colour = c("#20D479", "#8DEBBC"),
+    bar_pattern_spacing = 0.0346,
+    columns_alignment = c(rep(0.5, 2), 2),
+    columns_width = column_widths_stand$p2,
+    headers_alignment = c(0.5, 0.5, 0.5, 0),
+    default_list = barplot_table_plot_pattern
+  )
+)
+
+bar_pattern_spacing_stand <- standardize_pattern_spacing(list(p_1, p_2), pattern_spacing = 0.05)
+```
+
+```{r}
+tableplot_6.6 <- combine_plots(list(p_1, p_2))
+```
+
+
+```{r}
+save_plot(tableplot_6.6, filename = "C:/Users/hafiznij/Downloads/abb6_6_workshop.pdf", width = 320)
+
+```
+
+
+## Plot-Erstellung
+
+## Plot-Settings
