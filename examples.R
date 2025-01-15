@@ -1,3 +1,7 @@
+# install.packages("devtools")
+#devtools::install_github("nickhaf/eatPlot")
+
+library(eatPlot)
 
 # Linienplot 1 Gruppe -----------------------------------------------------
 
@@ -30,12 +34,19 @@ dat_lineplot_2 <- prep_lineplot(
 )
 dat_lineplot_2 <- process_bundesland(dat_lineplot_2)
 
+## Here we have to set the order of the brace labels manually:
+dat_lineplot_2$subgroup_var <- factor(dat_lineplot_2$subgroup_var, ordered = TRUE, levels = c("weiblich", "maennlich", "total"))
+
 lineplot_2 <- plot_lineplot(
   dat_lineplot_2,
   years_lines = list(c(2009, 2015), c(2015, 2022)),
   years_braces = list(c(2009, 2015), c(2015, 2022)),
   background_subgroup = "total",
-  plot_settings = plotsettings_lineplot(default_list = lineplot_4x4)
+  plot_settings = plotsettings_lineplot(subgroup_colours = c(weiblich = "#9B1B34",
+                                                             maennlich = "#F4BA02"),
+                                        axis_x_background_colour = "#00e0e0",
+                                        background_line_colour = "#01364C",
+                                        default_list = lineplot_4x4)
 )
 
 save_plot(lineplot_2, filename = "C:/Users/hafiznij/Downloads/lineplot_2_groups.pdf")

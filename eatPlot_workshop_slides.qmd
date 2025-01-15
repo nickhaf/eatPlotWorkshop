@@ -274,7 +274,7 @@ dat_lineplot_1 <- prep_lineplot(
 dat_lineplot_1 <- subset(dat_lineplot_1, subgroup_var == "total")
 
 ## For correctly displaying the state names:
-# dat_lineplot_1 <- process_bundesland(dat_lineplot_1)
+dat_lineplot_1 <- process_bundesland(dat_lineplot_1)
 
 lineplot_1 <- plot_lineplot(dat_lineplot_1,
   years_lines = list(c(2009, 2015), c(2015, 2022)),
@@ -289,7 +289,7 @@ lineplot_1
 
 ## Erstellen des Plots
 
-Die Beispiele finden sich in [](examples.R). 
+Die Beispiele finden sich [hier](https://github.com/nickhaf/eatPlotWorkshop/blob/main/examples.R). 
 
 :::{.callout-important}
 **Achtung**  
@@ -326,7 +326,7 @@ plots_6.6_kbs <- lapply(eatRep_kb_list, plot_my_lineplot )
 ```
 
 ## Zwei Gruppen
-Für [zwei Gruppen] funktioniert das ganz ähnlich.
+Für [zwei Gruppen](https://nickhaf.github.io/eatPlot/articles/lineplots.html#lineplot-for-two-groups) funktioniert das ganz ähnlich.
 
 ```{r}
 #| eval: false
@@ -367,10 +367,112 @@ trend_dat_geschlecht <- readRDS("I:/Methoden/02_IQB-interne_eat_Workshops/eatRep
 
 ```
 
+```{r}
+#| echo: false
+
+dat_6.6 <- prep_tablebarplot(
+  trend_mw,
+  subgroup_var = "geschlecht",
+  par = c("mean", "sd"), ## We need both mean and sd for the plot
+  comparisons = c("none", "trend", "trend_crossDiff") ## Set for smaller output-table
+)
+
+dat_6.6 <- subset(dat_6.6, geschlecht %in% c("m", "w"))
+dat_6.6$geschlecht <- gsub("m", "Jungen", dat_6.6$geschlecht)
+dat_6.6$geschlecht <- gsub("w", "Mädchen", dat_6.6$geschlecht)
+
+dat_6.6_a <- dat_6.6[order(dat_6.6$TR_BUNDESLAND), ]
+
+dat_6.6_a$TR_BUNDESLAND[duplicated(dat_6.6_a$TR_BUNDESLAND)] <- " "
+dat_6.6_a$TR_BUNDESLAND <- gsub("total", "Deutschland", dat_6.6_a$TR_BUNDESLAND)
+dat_6.6_a <- process_bundesland(dat_6.6_a)
+
+column_widths_stand <- standardize_column_width(
+  column_widths = list(
+    p1 = c(0.1, rep(0.04, 7), 0.05, rep(0.04, 2), NA),
+    p2 = c(0.05, rep(0.04, 2), NA)
+  ),
+  plot_ranges = c(75, 75) # Range of the x-axes of both plots set in 'axis_x_lims'.
+)
+
+p_1 <- plot_tablebarplot(
+  dat = dat_6.6_a,
+  bar_est = "est_2015 - 2009_trend_mean",
+  bar_label = NULL,
+  bar_sig = "sig_2015 - 2009_trend_mean",
+  bar_fill = "geschlecht",
+  column_spanners = list(
+    "**2009**<sup>a</sup>" = c(3, 4),
+    "**2015**<sup>a</sup>" = c(5, 6),
+    "**2022**<sup>a</sup>" = c(7, 8),
+    "**Differenz 2015-2009<sup>a</sup>**" = c(9, 12)
+  ),
+  columns_table_se = list(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "se_2015 - 2009_trend_mean", NULL),
+  headers = list("**Land**", " ", "*M*", "*SD*", "*M*", "*SD*", "*M*", "*SD*", "*M<sub>2015</sub> - M<sub>2009</sub>*", "*(SE)*", "*d*", " "),
+  columns_table = c("TR_BUNDESLAND", "geschlecht", "est_2009_none_mean", "est_2009_none_sd", "est_2015_none_mean", "est_2015_none_sd", "est_2022_none_mean", "est_2022_none_sd", "est_2015 - 2009_trend_mean", "se_2015 - 2009_trend_mean", "es_2015 - 2009_trend_mean"),
+  columns_table_sig_bold = list(NULL, NULL, "sig_2009_none_mean",
+    NULL, "sig_2015_none_mean", NULL, "sig_2022_none_mean", NULL, "sig_2015 - 2009_trend_mean", NULL, "sig_2015 - 2009_trend_mean"),
+  columns_table_sig_superscript = list(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "sig_2015 - 2009_trend_crossDiffTotal_mean", NULL,NULL),
+  y_axis = "y_axis",
+  columns_round = c(rep(0, 10), 2),
+  plot_settings = plotsettings_tablebarplot(
+    axis_x_lims = c(-5, 70),
+    bar_pattern_spacing = 0.0154, ## We calculated this below in standardize_pattern_spacing()
+    background_stripes_colour = c(rep(c("white", "white", "#EBFDF3", "#EBFDF3"), 8), "grey", "grey"),
+    bar_fill_colour = c("#20D479", "#8DEBBC"),
+    columns_alignment = c(0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 2),
+    columns_width = column_widths_stand$p1, ## This is the column-width object we set above
+    headers_alignment = c(0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0),
+    default_list = barplot_table_plot_pattern
+  )
+)
+
+p_2 <- plot_tablebarplot(
+  dat = dat_6.6_a,
+  bar_est = "est_2022 - 2015_trend_mean",
+  bar_label = NULL,
+  bar_sig = "sig_2022 - 2015_trend_mean",
+  bar_fill = "geschlecht",
+  column_spanners = list(
+    "**Differenz 2022-2015**" = c(1, 4)
+  ),
+  headers = list(
+    "*M<sub>2022</sub> - M<sub>2015</sub>*",
+    "*(SE)*",
+    "*d*",
+    " "
+  ),
+  columns_table = c(
+    "est_2022 - 2015_trend_mean",
+    "se_2022 - 2015_trend_mean",
+    "es_2022 - 2015_trend_mean"
+  ),
+  columns_table_se = list(NULL, "se_2022 - 2015_trend_mean", NULL),
+  columns_table_sig_bold = list("sig_2022 - 2015_trend_mean", NULL, "sig_2022 - 2015_trend_mean"),
+  columns_table_sig_superscript = list("sig_2022 - 2015_trend_crossDiffTotal_mean", NULL, NULL),
+  y_axis = "y_axis",
+  columns_round = c(0, 0, 2),
+  plot_settings = plotsettings_tablebarplot(
+    axis_x_lims = c(-5, 70),
+    bar_pattern_spacing = 0.0346, ## We calculated this below in standardize_pattern_spacing()
+    background_stripes_colour = c(rep(c("white", "white", "#EBFDF3", "#EBFDF3"), 8), "grey", "grey"),
+    bar_fill_colour = c("#20D479", "#8DEBBC"),   
+    columns_alignment = c(rep(0.5, 2), 2),
+    columns_width = column_widths_stand$p2, ## This is the column-width object we set above
+    headers_alignment = c(0.5, 0.5, 0.5, 0),
+    default_list = barplot_table_plot_pattern
+  )
+)
+
+tableplot_6.6 <- combine_plots(list(p_1, p_2))
+
+tableplot_6.6
+```
+
 
 ## Erstellen des Plots
 
-Die Beispiele finden sich in [](examples.R). 
+Die Beispiele finden sich [hier](https://github.com/nickhaf/eatPlotWorkshop/blob/main/examples.R). 
 
 :::{.callout-important}
 **Achtung**  
@@ -386,23 +488,30 @@ Bitte schaut zur Erstellung der Grafiken dann auf der [Webseite]() vorbei.
 - Tiefgestelltes<sub>yaay</sub>: `Tiefgestelltes<sub>yaay</sub>`
 
 
-## Schleife
+## Mehrere Kompetenzbereiche
 
 ```{r}
 #| eval: false
 #| 
-my_plot_6.6 <- function(plot_dat){
-  ## Plot-Erstellung hier rein
-  p_1 <- plot_tablebarplot(
-  dat = plot_dat
-  ## , ...
-  )
+plot_my_tableplot_6.6 <- function(eatRep_kb){
+
+kb_prepped <- prep_tablebarplot(
+  eatRep_kb
+  # ...
+)
+
+plot_kb <- plot_tablebarplot(
+  kb_prepped
+  # ...
+)
+
+return(plot_kb)
 }
 ```
 
 ```{r}
 #| eval: false
-plots_6.6 <- lapply(eatRep_kb_list, my_plot_6.6 )
+plots_6.6 <- lapply(eatRep_kb_list, plot_my_tableplot_6.6)
 ```
 
 

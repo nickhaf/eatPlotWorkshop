@@ -292,13 +292,13 @@
     },
     "eatPlot": {
       "Package": "eatPlot",
-      "Version": "1.0.0",
+      "Version": "1.0.1",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "eatPlot",
       "RemoteUsername": "nickhaf",
-      "RemoteSha": "c28c63682eb7dfa4858c7ae46076a20c8e48224e",
+      "RemoteSha": "1acebb0a1d8a2188367019698196583b68bdfcb8",
       "Requirements": [
         "R",
         "checkmate",
@@ -315,7 +315,7 @@
         "rlang",
         "tidyr"
       ],
-      "Hash": "407ea6ba3fca042048f16ca0bf2a9d32"
+      "Hash": "229b3f404e338a53f11580133280eaae"
     },
     "evaluate": {
       "Package": "evaluate",
