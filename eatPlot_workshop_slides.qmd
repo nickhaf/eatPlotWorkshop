@@ -14,8 +14,7 @@ format:
     highlight-style: dark.theme
     code-link: true
     code-line-numbers: false
-execute:
-  echo: true
+echo: true
 callout-appearance: simple
 lang: de
 categories: [eatPlot, tutorial, slides, intro]
