@@ -53,34 +53,50 @@ library(eatPlot)
 ```
 
 
-- Automatisieren der Grafikerstellung für eatRep-Output
-- BT-Grafiken!
+- Automatisieren der Grafikerstellung für eatRep-Output (vor allem BT-Grafiken!)
 
 :::{.callout-important}
-Das Paket befindet sich noch in Entwicklung. Falls euch Bugs auffallen, bitte Melden! Ich kümmere mich schnellstmöglich drum. 
+Das Paket befindet sich noch in Entwicklung. Die Beispiele in dieser Präsentation sind **vorläufig**, können sich also noch leicht ändern. Ich werde alle Änderungen aber in den [online-Vorlagen](https://nickhaf.github.io/eatPlot/index.html) anpassen. 
 :::
 
 
-## Vorteile
+## Warum?
 
-- Schneller Zugang zu komplexen BT-Visualisierungen und Tabellen
-- Vereinheitlichung der BT-Plots
-- Leichtes Updaten bei Änderungen in den Plots und/oder Daten
-- Nachvollziehbarkeit/Version Control
-- Weniger Checks nötig, da Werte automatisch eingelesen werden
-
-## Nachteile
-
-- Gerade zu Beginn etwas mehr Arbeit für Kapitelautor*innen 
-  - Aber: "Plug-and-Play"-Vorlagen, weniger Überarbeitungsschleifen und Kontrollen
-
-## Vorlagen
-
-Vignetten, Tutorials sowie Vorlagen zur Erstellung finden sich auf der [Webseite](https://nickhaf.github.io/eatPlot/)
-
+- Schnell selbst durchführbar
+- Reproduzierbar
+- Vereinfachung der Plot-Erstellung durch ["Plug-and-Play"-Vorlagen](https://nickhaf.github.io/eatPlot/)
+- Vereinheitlichung durch Zentrale Vorlagen
+- Einfach Updatebar
+- Weniger fehleranfällig
 
 
 # Allgemeiner Workflow
+
+## Linienplots
+
+```{r}
+#| echo: false
+
+dat_lineplot_1 <- prep_lineplot(
+  trend_mw,
+  subgroup_var = "geschlecht" ## Leave this argument if you have only one subgroup
+)
+
+dat_lineplot_1 <- subset(dat_lineplot_1, subgroup_var == "total")
+
+## For correctly displaying the state names:
+# dat_lineplot_1 <- process_bundesland(dat_lineplot_1)
+
+lineplot_1 <- plot_lineplot(dat_lineplot_1,
+  years_lines = list(c(2009, 2015), c(2015, 2022)),
+  years_braces = list(c(2009, 2015), c(2015, 2022)),
+  plot_settings = plotsettings_lineplot(default_list = lineplot_4x4)
+)
+
+lineplot_1
+```
+
+## Tabellen/Balkendiagramme
 
 ## Datenformat
 
@@ -90,7 +106,6 @@ str(trend_3)
 
 
 ## Datenaufbereitung
-
 Es gibt zwei Prep-Funktionen:
 
 ```{r}
@@ -98,7 +113,9 @@ lineplot_prepped <- prep_lineplot(trend_3, subgroup_var = "mhg")
 ```
 
 ```{r}
-tableplot_prepped <- prep_tablebarplot(trend_3, subgroup_var = "mhg")
+tableplot_prepped <- prep_tablebarplot(trend_mw, 
+                                       subgroup_var = "geschlecht",
+                                       comparisons = c("none", "crossDiff"))
 ```
 
 ## Datenaufbereitung
@@ -106,18 +123,39 @@ tableplot_prepped <- prep_tablebarplot(trend_3, subgroup_var = "mhg")
 str(lineplot_prepped)
 ```
 
-
 ## Datenaufbereitung
 ```{r}
 str(tableplot_prepped)
 ```
 
-
-
 ## Ploterstellung
 
-## Bonus: Plot_settings
+```{r}
+#| eval: false
+plot_lineplot()
+plot_tablebarplot()
+```
 
+
+## Plot settings
+
+- Einstellungen zum Aussehen der Plots werden so vorgenommen:
+
+```{r}
+#| eval: false
+plotsettings_lineplot()
+plotsettings_tablebarplot()
+```
+
+## Plot settings
+
+Es gibt dabei voreingestellte Setting-Objekte, die genutzt werden können:
+
+```{r}
+#| eval: false
+plotsettings_lineplot(default_list = lineplot_4x4)
+
+```
 
 
 # Linienplots
@@ -125,9 +163,6 @@ str(tableplot_prepped)
 
 ## Datenaufbereitung
 
-:::{.callout-warning}
-
-Bitte lest die Daten aus dem `eatRep`-Workshop ein:
 
 ```{r}
 #| eval: false
@@ -135,19 +170,16 @@ trend_dat <- readRDS("I:/Methoden/02_IQB-interne_eat_Workshops/eatRep_2024/Beisp
 
 ```
 
-:::
-
+Wir möchten einen [Linienplot für eine Gruppe](https://nickhaf.github.io/eatPlot/articles/lineplots.html#lineplot-one-group) erstellen. 
 
 ## Datenaufbereitung
 ```{r}
 #| eval: false
-trend_p <- prep_lineplot(
+dat_lineplot_1 <- prep_lineplot(
   trend_dat
 )
 
-trend_p$TR_BUNDESLAND <- gsub("([a-z])([A-Z])", "\\1-\\2", trend_p$TR_BUNDESLAND)
-trend_p$TR_BUNDESLAND <- gsub("ue", "ü", trend_p$TR_BUNDESLAND)
-
+dat_lineplot_1 <- process_bundesland(dat_lineplot_1)
 ```
 
 
@@ -155,17 +187,10 @@ trend_p$TR_BUNDESLAND <- gsub("ue", "ü", trend_p$TR_BUNDESLAND)
 
 ```{r}
 #| eval: FALSE
-
-
 lineplot_1_w <- plot_lineplot(
-  trend_p,
+  dat_lineplot_1,
   years_lines = list(c(2009, 2015), c(2015, 2022)),
   years_braces = list(c(2009, 2015), c(2015, 2022)),
-  box_facet = "Berlin",
-  background_subgroup = "total",
-  title_superscripts = list(
-    "Bayern" = "a",
-    "Thüringen" = "3"),
   plot_settings = plotsettings_lineplot(default_list = lineplot_4x4)
 )
 ```
@@ -207,12 +232,32 @@ lineplot_1_w <- plot_lineplot(
 plots_6.6 <- lapply(eatRep_kb_list, plot_my_lineplot )
 ```
 
+## Zwei Gruppen
+```{r}
+#| eval: false
+trend_dat_geschlecht <- readRDS("I:/Methoden/02_IQB-interne_eat_Workshops/eatRep_2024/Beispieloutputs/disp_geschlecht.rds")
+
+trend_3_prepped <- prep_lineplot(
+  trend_dat_geschlecht,
+  subgroup_var = "Kgender"
+)
+
+trend_3_prepped$TR_BUNDESLAND <- gsub("ue", "ü", trend_3_prepped$TR_BUNDESLAND)
+
+lineplot_2 <- plot_lineplot(
+  trend_3_prepped,
+  point_sig = "sig_comparison_crossDiffTotal_subgroupTotal",
+  years_lines = list(c(2009, 2015), c(2015, 2022)),
+  years_braces = list(c(2009, 2015), c(2015, 2022)),
+  background_subgroup = "total",
+  plot_settings = plotsettings_lineplot(split_plot = FALSE, default_list = lineplot_4x4)
+)
+```
+
+
 # Tabellen/Barplots
 
 ## Datenaufbereitung
-:::{.callout-warning}
-
-Bitte lest die Daten aus dem `eatRep`-Workshop ein:
 
 ```{r}
 #| eval: false
@@ -220,7 +265,33 @@ trend_dat_geschlecht <- readRDS("I:/Methoden/02_IQB-interne_eat_Workshops/eatRep
 
 ```
 
-:::
+
+
+
+```{r}
+#| eval: false
+trend_3_prepped <- prep_lineplot(
+  trend_dat_geschlecht,
+  subgroup_var = "Kgender"
+)
+
+
+trend_3_prepped$TR_BUNDESLAND <- gsub("ue", "ü", trend_3_prepped$TR_BUNDESLAND)
+```
+
+
+```{r}
+#| eval: false
+lineplot_2 <- plot_lineplot(
+  trend_3_prepped,
+  point_sig = "sig_comparison_crossDiffTotal_subgroupTotal",
+  years_lines = list(c(2009, 2015), c(2015, 2022)),
+  years_braces = list(c(2009, 2015), c(2015, 2022)),
+  background_subgroup = "total",
+  plot_settings = plotsettings_lineplot(split_plot = FALSE, default_list = lineplot_4x4)
+)
+```
+
 
 ## Datenaufbereitung
 ```{r}
@@ -413,6 +484,13 @@ save_plot(tableplot_6.6, filename = "C:/Users/hafiznij/Downloads/abb6_6_workshop
 ## Plot-Erstellung
 
 ## Plot-Settings
+
+## Kleines Markdown/HTML-1x1
+
+- **Das ist mein fettgedruckter Text**: `**Das ist mein fettgedruckter Text**`
+- *Das ist mein Kursiver Text*: `*Das ist mein Kursiver Text*`
+- Hochgestelltes<sup>a</sup>: `Hochgestelltes<sup>a</sup>`
+- Tiefgestelltes<sub>yaay</sub>: `Tiefgestelltes<sub>yaay</sub>`
 
 
 ## Schleife
