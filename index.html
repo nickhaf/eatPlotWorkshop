@@ -422,8 +422,7 @@ Nicklas Hafiz
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://nickhaf.github.io/eatPlot/">eatPlot</a></span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Automatisieren der Grafikerstellung für eatRep-Output</li>
-<li>BT-Grafiken!</li>
+<li>Automatisieren der Grafikerstellung für eatRep-Output (vor allem BT-Grafiken!)</li>
 </ul>
 <div class="callout callout-important callout-style-simple">
 <div class="callout-body">
@@ -431,28 +430,24 @@ Nicklas Hafiz
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>Das Paket befindet sich noch in Entwicklung. Falls euch Bugs auffallen, bitte Melden! Ich kümmere mich schnellstmöglich drum.</p>
+<p>Das Paket befindet sich noch in Entwicklung. Die Beispiele in dieser Präsentation sind <strong>vorläufig</strong>, können sich also noch leicht ändern. Ich werde alle Änderungen aber in den <a href="https://nickhaf.github.io/eatPlot/index.html">online-Vorlagen</a> anpassen.</p>
 </div>
 </div>
 </div>
-</section><section id="vorteile" class="slide level2"><h2>Vorteile</h2>
+</section><section id="warum" class="slide level2"><h2>Warum?</h2>
 <ul>
-<li>Schneller Zugang zu komplexen BT-Visualisierungen und Tabellen</li>
-<li>Vereinheitlichung der BT-Plots</li>
-<li>Leichtes Updaten bei Änderungen in den Plots und/oder Daten</li>
-<li>Nachvollziehbarkeit/Version Control</li>
-<li>Weniger Checks nötig, da Werte automatisch eingelesen werden</li>
-</ul></section><section id="nachteile" class="slide level2"><h2>Nachteile</h2>
-<ul>
-<li>Gerade zu Beginn etwas mehr Arbeit für Kapitelautor*innen
-<ul>
-<li>Aber: “Plug-and-Play”-Vorlagen, weniger Überarbeitungsschleifen und Kontrollen</li>
-</ul>
+<li>Schnell selbst durchführbar</li>
+<li>Reproduzierbar</li>
+<li>Vereinfachung der Plot-Erstellung durch <a href="https://nickhaf.github.io/eatPlot/">“Plug-and-Play”-Vorlagen</a>
 </li>
-</ul></section><section id="vorlagen" class="slide level2"><h2>Vorlagen</h2>
-<p>Vignetten, Tutorials sowie Vorlagen zur Erstellung finden sich auf der <a href="https://nickhaf.github.io/eatPlot/">Webseite</a></p>
-</section><section><section id="allgemeiner-workflow" class="title-slide slide level1 center"><h1>Allgemeiner Workflow</h1>
+<li>Vereinheitlichung durch Zentrale Vorlagen</li>
+<li>Einfach Updatebar</li>
+<li>Weniger fehleranfällig</li>
+</ul></section><section><section id="allgemeiner-workflow" class="title-slide slide level1 center"><h1>Allgemeiner Workflow</h1>
 
+</section><section id="linienplots" class="slide level2"><h2>Linienplots</h2>
+
+<img data-src="eatPlot_workshop_slides_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section><section id="tabellenbalkendiagramme" class="slide level2"><h2>Tabellen/Balkendiagramme</h2>
 </section><section id="datenformat" class="slide level2"><h2>Datenformat</h2>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">trend_3</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -505,7 +500,9 @@ Nicklas Hafiz
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lineplot_prepped</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/prep_lineplot.html">prep_lineplot</a></span><span class="op">(</span><span class="va">trend_3</span>, subgroup_var <span class="op">=</span> <span class="st">"mhg"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tableplot_prepped</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/prep_tablebarplot.html">prep_tablebarplot</a></span><span class="op">(</span><span class="va">trend_3</span>, subgroup_var <span class="op">=</span> <span class="st">"mhg"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tableplot_prepped</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/prep_tablebarplot.html">prep_tablebarplot</a></span><span class="op">(</span><span class="va">trend_mw</span>, </span>
+<span>                                       subgroup_var <span class="op">=</span> <span class="st">"geschlecht"</span>,</span>
+<span>                                       comparisons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"crossDiff"</span><span class="op">)</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="datenaufbereitung-1" class="slide level2"><h2>Datenaufbereitung</h2>
 <div class="cell">
@@ -568,144 +565,110 @@ Nicklas Hafiz
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">tableplot_prepped</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   357 obs. of  154 variables:
- $ depVar                                                : chr  "bista" "bista" "bista" "bista" ...
- $ mhg                                                   : chr  "aohneZWH" "aohneZWH" "aohneZWH" "aohneZWH" ...
- $ TR_BUNDESLAND                                         : chr  "total" "Baden-Wuerttemberg" "Bayern" "Berlin" ...
- $ est_2009_none_mean                                    : num  533 543 547 523 500 ...
- $ est_2015_none_mean                                    : num  522 523 532 525 513 ...
- $ est_2022_none_mean                                    : num  492 507 501 487 458 ...
- $ est_2015 - 2009_trend_mean                            : num  -10.91 -20.44 -14.23 2.04 12.82 ...
- $ est_2022 - 2009_trend_mean                            : num  -41.7 -36.6 -45.6 -35.9 -42.5 ...
- $ est_2022 - 2015_trend_mean                            : num  -30.7 -16.2 -31.4 -38 -55.4 ...
- $ est_2009_crossDiff_mean                               : num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2015_crossDiff_mean                               : num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2022_crossDiff_mean                               : num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2015 - 2009_trend_crossDiff_mean                  : num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2022 - 2009_trend_crossDiff_mean                  : num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2022 - 2015_trend_crossDiff_mean                  : num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2009_crossDiffTotal_mean                          : num  NA 9.93 13.26 -10.07 -33.31 ...
- $ est_2015_crossDiffTotal_mean                          : num  NA 0.4 9.94 2.88 -9.57 ...
- $ est_2022_crossDiffTotal_mean                          : num  NA 14.96 9.32 -4.34 -34.2 ...
- $ est_2015 - 2009_trend_crossDiffTotal_mean             : num  NA -9.53 -3.32 12.95 23.74 ...
- $ est_2022 - 2009_trend_crossDiffTotal_mean             : num  NA 5.025 -3.941 5.724 -0.892 ...
- $ est_2022 - 2015_trend_crossDiffTotal_mean             : num  NA 14.557 -0.618 -7.23 -24.628 ...
- $ est_2009_groupDiff_mean                               : num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2015_groupDiff_mean                               : num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2022_groupDiff_mean                               : num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2015 - 2009_trend_groupDiff_mean                  : num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2022 - 2009_trend_groupDiff_mean                  : num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2022 - 2015_trend_groupDiff_mean                  : num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2009_crossDiff_of_groupDiffTotal_mean             : num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2015_crossDiff_of_groupDiffTotal_mean             : num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2022_crossDiff_of_groupDiffTotal_mean             : num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2015 - 2009_trend_crossDiff_of_groupDiffTotal_mean: num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2022 - 2009_trend_crossDiff_of_groupDiffTotal_mean: num  NA NA NA NA NA NA NA NA NA NA ...
- $ est_2022 - 2015_trend_crossDiff_of_groupDiffTotal_mean: num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2009_none_mean                                     : num  0.797 2.668 2.099 2.883 2.308 ...
- $ se_2015_none_mean                                     : num  0.992 3.04 2.733 3.322 2.549 ...
- $ se_2022_none_mean                                     : num  1.06 3.8 3.24 3.6 3.17 ...
- $ se_2015 - 2009_trend_mean                             : num  3.07 4.92 4.44 5.21 4.43 ...
- $ se_2022 - 2009_trend_mean                             : num  4.94 6.65 6.13 6.63 6.17 ...
- $ se_2022 - 2015_trend_mean                             : num  4.12 6.21 5.73 6.24 5.61 ...
- $ se_2009_crossDiff_mean                                : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2015_crossDiff_mean                                : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2022_crossDiff_mean                                : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2015 - 2009_trend_crossDiff_mean                   : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2022 - 2009_trend_crossDiff_mean                   : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2022 - 2015_trend_crossDiff_mean                   : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2009_crossDiffTotal_mean                           : num  NA 2.79 2.25 2.99 2.44 ...
- $ se_2015_crossDiffTotal_mean                           : num  NA 3.2 2.91 3.47 2.73 ...
- $ se_2022_crossDiffTotal_mean                           : num  NA 3.94 3.41 3.76 3.35 ...
- $ se_2015 - 2009_trend_crossDiffTotal_mean              : num  NA 5.08 4.62 5.36 4.61 ...
- $ se_2022 - 2009_trend_crossDiffTotal_mean              : num  NA 6.78 6.27 6.76 6.31 ...
- $ se_2022 - 2015_trend_crossDiffTotal_mean              : num  NA 6.38 5.91 6.4 5.79 ...
- $ se_2009_groupDiff_mean                                : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2015_groupDiff_mean                                : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2022_groupDiff_mean                                : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2015 - 2009_trend_groupDiff_mean                   : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2022 - 2009_trend_groupDiff_mean                   : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2022 - 2015_trend_groupDiff_mean                   : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2009_crossDiff_of_groupDiffTotal_mean              : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2015_crossDiff_of_groupDiffTotal_mean              : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2022_crossDiff_of_groupDiffTotal_mean              : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2015 - 2009_trend_crossDiff_of_groupDiffTotal_mean : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2022 - 2009_trend_crossDiff_of_groupDiffTotal_mean : num  NA NA NA NA NA NA NA NA NA NA ...
- $ se_2022 - 2015_trend_crossDiff_of_groupDiffTotal_mean : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2009_none_mean                                     : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2015_none_mean                                     : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2022_none_mean                                     : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2015 - 2009_trend_mean                             : num  -0.126 -0.229 -0.173 0.022 0.139 -0.118 0.052 -0.065 -0.102 -0.064 ...
- $ es_2022 - 2009_trend_mean                             : num  -0.445 -0.373 -0.513 -0.352 -0.446 -0.392 -0.032 -0.401 -0.527 -0.372 ...
- $ es_2022 - 2015_trend_mean                             : num  -0.315 -0.156 -0.338 -0.359 -0.562 -0.278 -0.077 -0.315 -0.417 -0.319 ...
- $ es_2009_crossDiff_mean                                : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2015_crossDiff_mean                                : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2022_crossDiff_mean                                : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2015 - 2009_trend_crossDiff_mean                   : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2022 - 2009_trend_crossDiff_mean                   : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2022 - 2015_trend_crossDiff_mean                   : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2009_crossDiffTotal_mean                           : num  NA 0.121 0.166 -0.118 -0.39 -0.236 0.117 -0.101 -0.24 -0.072 ...
- $ es_2015_crossDiffTotal_mean                           : num  NA 0.004 0.112 0.031 -0.103 -0.222 0.271 -0.027 -0.198 -0.005 ...
- $ es_2022_crossDiffTotal_mean                           : num  NA 0.138 0.092 -0.04 -0.333 -0.178 0.484 -0.027 -0.259 0.021 ...
- $ es_2015 - 2009_trend_crossDiffTotal_mean              : num  NA -2.605 -0.811 2.102 3.956 ...
- $ es_2022 - 2009_trend_crossDiffTotal_mean              : num  NA 0.92 -0.824 0.673 -0.172 ...
- $ es_2022 - 2015_trend_crossDiffTotal_mean              : num  NA 2.227 -0.13 -0.856 -6.307 ...
- $ es_2009_groupDiff_mean                                : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2015_groupDiff_mean                                : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2022_groupDiff_mean                                : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2015 - 2009_trend_groupDiff_mean                   : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2022 - 2009_trend_groupDiff_mean                   : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2022 - 2015_trend_groupDiff_mean                   : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2009_crossDiff_of_groupDiffTotal_mean              : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2015_crossDiff_of_groupDiffTotal_mean              : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2022_crossDiff_of_groupDiffTotal_mean              : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2015 - 2009_trend_crossDiff_of_groupDiffTotal_mean : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2022 - 2009_trend_crossDiff_of_groupDiffTotal_mean : num  NA NA NA NA NA NA NA NA NA NA ...
- $ es_2022 - 2015_trend_crossDiff_of_groupDiffTotal_mean : num  NA NA NA NA NA NA NA NA NA NA ...
- $ sig_2009_none_mean                                    : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
- $ sig_2015_none_mean                                    : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
- $ sig_2022_none_mean                                    : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
- $ sig_2015 - 2009_trend_mean                            : logi  TRUE TRUE TRUE FALSE TRUE FALSE ...
- $ sig_2022 - 2009_trend_mean                            : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
- $ sig_2022 - 2015_trend_mean                            : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
-  [list output truncated]</code></pre>
+<pre><code>'data.frame':   85 obs. of  49 variables:
+ $ depVar                      : chr  "bista" "bista" "bista" "bista" ...
+ $ geschlecht                  : chr  "w" "w" "w" "w" ...
+ $ TR_BUNDESLAND               : chr  "total" "Baden-Wuerttemberg" "Bayern" "Berlin" ...
+ $ est_2009_none_mean          : num  32 63.2 45.9 27.8 23.6 ...
+ $ est_2015_none_mean          : num  37.8 41 25.2 32 33.6 ...
+ $ est_2022_none_mean          : num  50.5 29.1 30.3 71 47.8 ...
+ $ est_2009_crossDiff_mean     : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ est_2015_crossDiff_mean     : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ est_2022_crossDiff_mean     : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ est_2009_crossDiffTotal_mean: num  NA 43.7 62 39.8 54.2 ...
+ $ est_2015_crossDiffTotal_mean: num  NA 44.4 42.1 43.5 50.4 ...
+ $ est_2022_crossDiffTotal_mean: num  NA 38.8 47 38.3 31.5 ...
+ $ se_2009_none_mean           : num  0.797 2.668 2.099 2.883 2.308 ...
+ $ se_2015_none_mean           : num  0.992 3.04 2.733 3.322 2.549 ...
+ $ se_2022_none_mean           : num  1.06 3.8 3.24 3.6 3.17 ...
+ $ se_2009_crossDiff_mean      : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ se_2015_crossDiff_mean      : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ se_2022_crossDiff_mean      : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ se_2009_crossDiffTotal_mean : num  NA 2.79 2.25 2.99 2.44 ...
+ $ se_2015_crossDiffTotal_mean : num  NA 3.2 2.91 3.47 2.73 ...
+ $ se_2022_crossDiffTotal_mean : num  NA 3.94 3.41 3.76 3.35 ...
+ $ es_2009_none_mean           : num  -0.372 -1.495 0.36 0.694 -0.522 ...
+ $ es_2015_none_mean           : num  0.749 0.459 -0.807 0.24 0.357 ...
+ $ es_2022_none_mean           : num  0.487 0.605 -0.192 -0.536 1.106 ...
+ $ es_2009_crossDiff_mean      : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ es_2015_crossDiff_mean      : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ es_2022_crossDiff_mean      : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ es_2009_crossDiffTotal_mean : num  NA -0.991 0.161 -0.482 0.71 ...
+ $ es_2015_crossDiffTotal_mean : num  NA 0.198 0.104 -1.331 0.203 ...
+ $ es_2022_crossDiffTotal_mean : num  NA -0.234 0.615 -0.133 0.784 ...
+ $ sig_2009_none_mean          : logi  FALSE TRUE TRUE FALSE FALSE FALSE ...
+ $ sig_2015_none_mean          : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+ $ sig_2022_none_mean          : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+ $ sig_2009_crossDiff_mean     : logi  NA NA NA NA NA NA ...
+ $ sig_2015_crossDiff_mean     : logi  NA NA NA NA NA NA ...
+ $ sig_2022_crossDiff_mean     : logi  NA NA NA NA NA NA ...
+ $ sig_2009_crossDiffTotal_mean: logi  NA FALSE TRUE TRUE FALSE FALSE ...
+ $ sig_2015_crossDiffTotal_mean: logi  NA FALSE FALSE FALSE FALSE FALSE ...
+ $ sig_2022_crossDiffTotal_mean: logi  NA FALSE FALSE FALSE FALSE FALSE ...
+ $ p_2009_none_mean            : num  0.0766 0.0398 0.0408 0.5275 0.1505 ...
+ $ p_2015_none_mean            : num  0.154 0.232 0.35 0.27 0.223 ...
+ $ p_2022_none_mean            : num  0.104 0.0835 0.3648 0.1522 0.0518 ...
+ $ p_2009_crossDiff_mean       : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ p_2015_crossDiff_mean       : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ p_2022_crossDiff_mean       : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ p_2009_crossDiffTotal_mean  : num  NA 0.1776 0.0211 0.0474 0.481 ...
+ $ p_2015_crossDiffTotal_mean  : num  NA 0.302 0.14 0.431 0.605 ...
+ $ p_2022_crossDiffTotal_mean  : num  NA 0.2634 0.0822 0.14 0.4469 ...
+ $ y_axis                      : int  1 2 3 4 5 6 7 8 9 10 ...</code></pre>
 </div>
 </div>
 </section><section id="ploterstellung" class="slide level2"><h2>Ploterstellung</h2>
-</section><section id="bonus-plot_settings" class="slide level2"><h2>Bonus: Plot_settings</h2>
-</section></section><section><section id="linienplots" class="title-slide slide level1 center"><h1>Linienplots</h1>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plot_lineplot.html">plot_lineplot</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plot_tablebarplot.html">plot_tablebarplot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="plot-settings" class="slide level2"><h2>Plot settings</h2>
+<ul>
+<li>Einstellungen zum Aussehen der Plots werden so vorgenommen:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plotsettings_lineplot.html">plotsettings_lineplot</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plotsettings_tablebarplot.html">plotsettings_tablebarplot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="plot-settings-1" class="slide level2"><h2>Plot settings</h2>
+<p>Es gibt dabei voreingestellte Setting-Objekte, die genutzt werden können:</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plotsettings_lineplot.html">plotsettings_lineplot</a></span><span class="op">(</span>default_list <span class="op">=</span> <span class="va">lineplot_4x4</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section><section id="linienplots-1" class="title-slide slide level1 center"><h1>Linienplots</h1>
 
 </section><section id="datenaufbereitung-3" class="slide level2"><h2>Datenaufbereitung</h2>
-<div class="callout callout-warning callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
-<p>Bitte lest die Daten aus dem <code>eatRep</code>-Workshop ein:</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trend_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"I:/Methoden/02_IQB-interne_eat_Workshops/eatRep_2024/Beispieloutputs/04_meansAufbereitet.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trend_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"I:/Methoden/02_IQB-interne_eat_Workshops/eatRep_2024/Beispieloutputs/04_meansAufbereitet.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-</div>
-</section><section id="plot-erstellung" class="slide level2"><h2>Plot-Erstellung</h2>
-</section><section id="plot-settings" class="slide level2"><h2>Plot-Settings</h2>
-</section></section><section><section id="tabellenbarplots" class="title-slide slide level1 center"><h1>Tabellen/Barplots</h1>
-
+<p>Wir möchten einen <a href="https://nickhaf.github.io/eatPlot/articles/lineplots.html#lineplot-one-group">Linienplot für eine Gruppe</a> erstellen.</p>
 </section><section id="datenaufbereitung-4" class="slide level2"><h2>Datenaufbereitung</h2>
-</section><section id="datenaufbereitung-5" class="slide level2"><h2>Datenaufbereitung</h2>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trend_p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/prep_lineplot.html">prep_lineplot</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat_lineplot_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/prep_lineplot.html">prep_lineplot</a></span><span class="op">(</span></span>
 <span>  <span class="va">trend_dat</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">trend_p</span><span class="op">$</span><span class="va">TR_BUNDESLAND</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"([a-z])([A-Z])"</span>, <span class="st">"\\1-\\2"</span>, <span class="va">trend_p</span><span class="op">$</span><span class="va">TR_BUNDESLAND</span><span class="op">)</span></span>
-<span><span class="va">trend_p</span><span class="op">$</span><span class="va">TR_BUNDESLAND</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"ue"</span>, <span class="st">"ü"</span>, <span class="va">trend_p</span><span class="op">$</span><span class="va">TR_BUNDESLAND</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">dat_lineplot_1</span> <span class="op">&lt;-</span> <span class="fu">process_bundesland</span><span class="op">(</span><span class="va">dat_lineplot_1</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="plot-erstellung-1" class="slide level2"><h2>Plot-Erstellung</h2>
+</section><section id="plot-erstellung" class="slide level2"><h2>Plot-Erstellung</h2>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lineplot_1_w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plot_lineplot.html">plot_lineplot</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lineplot_1_w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plot_lineplot.html">plot_lineplot</a></span><span class="op">(</span></span>
+<span>  <span class="va">dat_lineplot_1</span>,</span>
+<span>  years_lines <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2009</span>, <span class="fl">2015</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2015</span>, <span class="fl">2022</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  years_braces <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2009</span>, <span class="fl">2015</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2015</span>, <span class="fl">2022</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  plot_settings <span class="op">=</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plotsettings_lineplot.html">plotsettings_lineplot</a></span><span class="op">(</span>default_list <span class="op">=</span> <span class="va">lineplot_4x4</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="abspeichern" class="slide level2"><h2>Abspeichern</h2>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/save_plot.html">save_plot</a></span><span class="op">(</span><span class="va">lineplot_1_w</span>, filename <span class="op">=</span> <span class="st">"C:/Users/hafiznij/Downloads/lineplot_1_group_workshop.pdf"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="plot-settings-2" class="slide level2"><h2>Plot-Settings</h2>
+</section><section id="mehrere-kompetenzbereiche" class="slide level2"><h2>Mehrere Kompetenzbereiche</h2>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_my_lineplot</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">plot_dat</span><span class="op">)</span><span class="op">{</span></span>
+<span></span>
+<span><span class="va">lineplot_1_w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plot_lineplot.html">plot_lineplot</a></span><span class="op">(</span></span>
 <span>  <span class="va">trend_p</span>,</span>
 <span>  years_lines <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2009</span>, <span class="fl">2015</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2015</span>, <span class="fl">2022</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  years_braces <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2009</span>, <span class="fl">2015</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2015</span>, <span class="fl">2022</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -715,13 +678,256 @@ Nicklas Hafiz
 <span>    <span class="st">"Bayern"</span> <span class="op">=</span> <span class="st">"a"</span>,</span>
 <span>    <span class="st">"Thüringen"</span> <span class="op">=</span> <span class="st">"3"</span><span class="op">)</span>,</span>
 <span>  plot_settings <span class="op">=</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plotsettings_lineplot.html">plotsettings_lineplot</a></span><span class="op">(</span>default_list <span class="op">=</span> <span class="va">lineplot_4x4</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="op">}</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plots_6.6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">eatRep_kb_list</span>, <span class="va">plot_my_lineplot</span> <span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="zwei-gruppen" class="slide level2"><h2>Zwei Gruppen</h2>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trend_dat_geschlecht</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"I:/Methoden/02_IQB-interne_eat_Workshops/eatRep_2024/Beispieloutputs/disp_geschlecht.rds"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">trend_3_prepped</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/prep_lineplot.html">prep_lineplot</a></span><span class="op">(</span></span>
+<span>  <span class="va">trend_dat_geschlecht</span>,</span>
+<span>  subgroup_var <span class="op">=</span> <span class="st">"Kgender"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">trend_3_prepped</span><span class="op">$</span><span class="va">TR_BUNDESLAND</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"ue"</span>, <span class="st">"ü"</span>, <span class="va">trend_3_prepped</span><span class="op">$</span><span class="va">TR_BUNDESLAND</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">lineplot_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plot_lineplot.html">plot_lineplot</a></span><span class="op">(</span></span>
+<span>  <span class="va">trend_3_prepped</span>,</span>
+<span>  point_sig <span class="op">=</span> <span class="st">"sig_comparison_crossDiffTotal_subgroupTotal"</span>,</span>
+<span>  years_lines <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2009</span>, <span class="fl">2015</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2015</span>, <span class="fl">2022</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  years_braces <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2009</span>, <span class="fl">2015</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2015</span>, <span class="fl">2022</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  background_subgroup <span class="op">=</span> <span class="st">"total"</span>,</span>
+<span>  plot_settings <span class="op">=</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plotsettings_lineplot.html">plotsettings_lineplot</a></span><span class="op">(</span>split_plot <span class="op">=</span> <span class="cn">FALSE</span>, default_list <span class="op">=</span> <span class="va">lineplot_4x4</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="abspeichern" class="slide level2"><h2>Abspeichern</h2>
+</section></section><section><section id="tabellenbarplots" class="title-slide slide level1 center"><h1>Tabellen/Barplots</h1>
+
+</section><section id="datenaufbereitung-5" class="slide level2"><h2>Datenaufbereitung</h2>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/save_plot.html">save_plot</a></span><span class="op">(</span><span class="va">lineplot_1_w</span>, filename <span class="op">=</span> <span class="st">"C:/Users/hafiznij/Downloads/lineplot_1_group_workshop.pdf"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trend_dat_geschlecht</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"I:/Methoden/02_IQB-interne_eat_Workshops/eatRep_2024/Beispieloutputs/disp_geschlecht.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="plot-settings-1" class="slide level2"><h2>Plot-Settings</h2>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trend_3_prepped</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/prep_lineplot.html">prep_lineplot</a></span><span class="op">(</span></span>
+<span>  <span class="va">trend_dat_geschlecht</span>,</span>
+<span>  subgroup_var <span class="op">=</span> <span class="st">"Kgender"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">trend_3_prepped</span><span class="op">$</span><span class="va">TR_BUNDESLAND</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"ue"</span>, <span class="st">"ü"</span>, <span class="va">trend_3_prepped</span><span class="op">$</span><span class="va">TR_BUNDESLAND</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lineplot_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plot_lineplot.html">plot_lineplot</a></span><span class="op">(</span></span>
+<span>  <span class="va">trend_3_prepped</span>,</span>
+<span>  point_sig <span class="op">=</span> <span class="st">"sig_comparison_crossDiffTotal_subgroupTotal"</span>,</span>
+<span>  years_lines <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2009</span>, <span class="fl">2015</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2015</span>, <span class="fl">2022</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  years_braces <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2009</span>, <span class="fl">2015</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2015</span>, <span class="fl">2022</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  background_subgroup <span class="op">=</span> <span class="st">"total"</span>,</span>
+<span>  plot_settings <span class="op">=</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plotsettings_lineplot.html">plotsettings_lineplot</a></span><span class="op">(</span>split_plot <span class="op">=</span> <span class="cn">FALSE</span>, default_list <span class="op">=</span> <span class="va">lineplot_4x4</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="datenaufbereitung-6" class="slide level2"><h2>Datenaufbereitung</h2>
+<div class="cell">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mw_sub</span> <span class="op">&lt;-</span> <span class="va">trend_mw</span></span>
+<span></span>
+<span><span class="va">dat_prepped</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/prep_tablebarplot.html">prep_tablebarplot</a></span><span class="op">(</span></span>
+<span>  <span class="va">trend_dat_geschlecht</span>,</span>
+<span>  subgroup_var <span class="op">=</span> <span class="st">"Kgender"</span>,</span>
+<span>  par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"mean"</span>, <span class="st">"sd"</span><span class="op">)</span>,</span>
+<span>  facet_var <span class="op">=</span> <span class="st">"TR_BUNDESLAND"</span>,</span>
+<span>  total_facet <span class="op">=</span> <span class="st">"total"</span>,</span>
+<span>  comparisons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"trend"</span>, <span class="st">"trend_crossDiff"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat_prepped</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">dat_prepped</span>, <span class="va">Kgender</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"maennlich"</span>, <span class="st">"weiblich"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">dat_prepped</span><span class="op">$</span><span class="va">Kgender</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"maennlich"</span>, <span class="st">"Jungen"</span>, <span class="va">dat_prepped</span><span class="op">$</span><span class="va">Kgender</span><span class="op">)</span></span>
+<span><span class="va">dat_prepped</span><span class="op">$</span><span class="va">Kgender</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"weiblich"</span>, <span class="st">"Mädchen"</span>, <span class="va">dat_prepped</span><span class="op">$</span><span class="va">Kgender</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dat_prepped_a</span> <span class="op">&lt;-</span> <span class="va">dat_prepped</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">dat_prepped</span><span class="op">$</span><span class="va">TR_BUNDESLAND</span><span class="op">)</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="va">dat_prepped_a</span><span class="op">$</span><span class="va">TR_BUNDESLAND</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html">duplicated</a></span><span class="op">(</span><span class="va">dat_prepped_a</span><span class="op">$</span><span class="va">TR_BUNDESLAND</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">" "</span></span>
+<span><span class="va">dat_prepped_a</span><span class="op">$</span><span class="va">TR_BUNDESLAND</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"total"</span>, <span class="st">"Deutschland"</span>, <span class="va">dat_prepped_a</span><span class="op">$</span><span class="va">TR_BUNDESLAND</span><span class="op">)</span></span>
+<span><span class="va">dat_prepped_a</span><span class="op">$</span><span class="va">TR_BUNDESLAND</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"ue"</span>, <span class="st">"ü"</span>, <span class="va">dat_prepped_a</span><span class="op">$</span><span class="va">TR_BUNDESLAND</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">column_widths_stand</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/standardize_column_width.html">standardize_column_width</a></span><span class="op">(</span></span>
+<span>  column_widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    p1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.04</span>, <span class="fl">7</span><span class="op">)</span>, <span class="fl">0.05</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.04</span>, <span class="fl">2</span><span class="op">)</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
+<span>    p2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.04</span>, <span class="fl">2</span><span class="op">)</span>, <span class="cn">NA</span><span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  plot_ranges <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">60</span>, <span class="fl">45</span><span class="op">)</span> <span class="co"># Range of the x-axes of both plots set in 'axis_x_lims'.</span></span>
+<span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plot_tablebarplot.html">plot_tablebarplot</a></span><span class="op">(</span></span>
+<span>  dat <span class="op">=</span> <span class="va">dat_prepped_a</span>,</span>
+<span>  bar_est <span class="op">=</span> <span class="st">"est_2015 - 2009_trend_mean"</span>,</span>
+<span>  bar_label <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  bar_sig <span class="op">=</span> <span class="st">"sig_2015 - 2009_trend_mean"</span>,</span>
+<span>  bar_fill <span class="op">=</span> <span class="st">"Kgender"</span>,</span>
+<span>  y_axis <span class="op">=</span> <span class="st">"y_axis"</span>,</span>
+<span>  column_spanners <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    <span class="st">"**2009**&lt;sup&gt;a&lt;/sup&gt;"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>,</span>
+<span>    <span class="st">"**2015**&lt;sup&gt;a&lt;/sup&gt;"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span>,</span>
+<span>    <span class="st">"**2022**&lt;sup&gt;a&lt;/sup&gt;"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span>,</span>
+<span>    <span class="st">"**Differenz 2015-2009&lt;sup&gt;a&lt;/sup&gt;**"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">12</span><span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  columns_table_se <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="cn">NULL</span>, <span class="cn">NULL</span>, <span class="cn">NULL</span>, <span class="cn">NULL</span>, <span class="cn">NULL</span>, <span class="cn">NULL</span>, <span class="cn">NULL</span>, <span class="cn">NULL</span>, <span class="cn">NULL</span>, <span class="st">"se_2015 - 2009_trend_mean"</span>, <span class="cn">NULL</span><span class="op">)</span>,</span>
+<span>  headers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    <span class="st">"**Land**"</span>,</span>
+<span>    <span class="st">" "</span>,</span>
+<span>    <span class="st">"*M*"</span>,</span>
+<span>    <span class="st">"*SD*"</span>,</span>
+<span>    <span class="st">"*M*"</span>,</span>
+<span>    <span class="st">"*SD*"</span>,</span>
+<span>    <span class="st">"*M*"</span>,</span>
+<span>    <span class="st">"*SD*"</span>,</span>
+<span>    <span class="st">"*M&lt;sub&gt;2015&lt;/sub&gt; - M&lt;sub&gt;2009&lt;/sub&gt;*"</span>,</span>
+<span>    <span class="st">"*(SE)*"</span>,</span>
+<span>    <span class="st">"*d*"</span>,</span>
+<span>    <span class="st">" "</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  columns_table <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"TR_BUNDESLAND"</span>,</span>
+<span>    <span class="st">"Kgender"</span>,</span>
+<span>    <span class="st">"est_2009_none_mean"</span>,</span>
+<span>    <span class="st">"est_2009_none_sd"</span>,</span>
+<span>    <span class="st">"est_2015_none_mean"</span>,</span>
+<span>    <span class="st">"est_2015_none_sd"</span>,</span>
+<span>    <span class="st">"est_2022_none_mean"</span>,</span>
+<span>    <span class="st">"est_2022_none_sd"</span>,</span>
+<span>    <span class="st">"est_2015 - 2009_trend_mean"</span>,</span>
+<span>    <span class="st">"se_2015 - 2009_trend_mean"</span>,</span>
+<span>    <span class="st">"es_2015 - 2009_trend_mean"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  columns_table_sig_bold <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="st">"sig_2009_none_mean"</span>,</span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="st">"sig_2015_none_mean"</span>,</span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="st">"sig_2022_none_mean"</span>,</span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="st">"sig_2015 - 2009_trend_mean"</span>,</span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="st">"sig_2015 - 2009_trend_mean"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  columns_table_sig_superscript <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="st">"sig_2015 - 2009_trend_crossDiffTotal_mean"</span>,</span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="cn">NULL</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  columns_round <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>  plot_settings <span class="op">=</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plotsettings_tablebarplot.html">plotsettings_tablebarplot</a></span><span class="op">(</span></span>
+<span>    axis_x_lims <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">30</span>, <span class="fl">30</span><span class="op">)</span>,</span>
+<span>    background_stripes_colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"white"</span>, <span class="st">"#EBFDF3"</span>, <span class="st">"#EBFDF3"</span><span class="op">)</span>, <span class="fl">8</span><span class="op">)</span>, <span class="st">"grey"</span>, <span class="st">"grey"</span><span class="op">)</span>,</span>
+<span>    bar_fill_colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#20D479"</span>, <span class="st">"#8DEBBC"</span><span class="op">)</span>,</span>
+<span>    bar_background_lines <span class="op">=</span> <span class="st">"scale_breaks"</span>,</span>
+<span>    bar_background_lines_linetype <span class="op">=</span> <span class="st">"dotted"</span>,</span>
+<span>    bar_pattern_spacing <span class="op">=</span> <span class="fl">0.0154</span>,</span>
+<span>    columns_alignment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">2</span>, <span class="fl">0.5</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>    columns_width <span class="op">=</span> <span class="va">column_widths_stand</span><span class="op">$</span><span class="va">p1</span>,</span>
+<span>    headers_alignment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>    default_list <span class="op">=</span> <span class="va">barplot_table_plot_pattern</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plot_tablebarplot.html">plot_tablebarplot</a></span><span class="op">(</span></span>
+<span>  dat <span class="op">=</span> <span class="va">dat_prepped_a</span>,</span>
+<span>  bar_est <span class="op">=</span> <span class="st">"est_2022 - 2015_trend_mean"</span>,</span>
+<span>  bar_label <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  bar_sig <span class="op">=</span> <span class="st">"sig_2022 - 2015_trend_mean"</span>,</span>
+<span>  bar_fill <span class="op">=</span> <span class="st">"Kgender"</span>,</span>
+<span>  column_spanners <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    <span class="st">"**Differenz 2022-2015**"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  headers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    <span class="st">"*M&lt;sub&gt;2022&lt;/sub&gt; - M&lt;sub&gt;2015&lt;/sub&gt;*"</span>,</span>
+<span>    <span class="st">"*(SE)*"</span>,</span>
+<span>    <span class="st">"*d*"</span>,</span>
+<span>    <span class="st">" "</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  columns_table <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"est_2022 - 2015_trend_mean"</span>,</span>
+<span>    <span class="st">"se_2022 - 2015_trend_mean"</span>,</span>
+<span>    <span class="st">"es_2022 - 2015_trend_mean"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  columns_table_se <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="cn">NULL</span>, <span class="st">"se_2022 - 2015_trend_mean"</span>, <span class="cn">NULL</span><span class="op">)</span>,</span>
+<span>  columns_table_sig_bold <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    <span class="st">"sig_2022 - 2015_trend_mean"</span>,</span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="st">"sig_2022 - 2015_trend_mean"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  columns_table_sig_superscript <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    <span class="st">"sig_2022 - 2015_trend_crossDiffTotal_mean"</span>,</span>
+<span>    <span class="cn">NULL</span>,</span>
+<span>    <span class="cn">NULL</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  y_axis <span class="op">=</span> <span class="st">"y_axis"</span>,</span>
+<span>  columns_round <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>  plot_settings <span class="op">=</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plotsettings_tablebarplot.html">plotsettings_tablebarplot</a></span><span class="op">(</span></span>
+<span>    axis_x_lims <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">40</span>, <span class="fl">5</span><span class="op">)</span>,</span>
+<span>    bar_background_lines <span class="op">=</span> <span class="st">"scale_breaks"</span>,</span>
+<span>    bar_background_lines_linetype <span class="op">=</span> <span class="st">"dotted"</span>,</span>
+<span>    background_stripes_colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"white"</span>, <span class="st">"#EBFDF3"</span>, <span class="st">"#EBFDF3"</span><span class="op">)</span>, <span class="fl">8</span><span class="op">)</span>, <span class="st">"grey"</span>, <span class="st">"grey"</span><span class="op">)</span>,</span>
+<span>    bar_fill_colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#20D479"</span>, <span class="st">"#8DEBBC"</span><span class="op">)</span>,</span>
+<span>    bar_pattern_spacing <span class="op">=</span> <span class="fl">0.0346</span>,</span>
+<span>    columns_alignment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>    columns_width <span class="op">=</span> <span class="va">column_widths_stand</span><span class="op">$</span><span class="va">p2</span>,</span>
+<span>    headers_alignment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>    default_list <span class="op">=</span> <span class="va">barplot_table_plot_pattern</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">bar_pattern_spacing_stand</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/standardize_pattern_spacing.html">standardize_pattern_spacing</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">p_1</span>, <span class="va">p_2</span><span class="op">)</span>, pattern_spacing <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tableplot_6.6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/combine_plots.html">combine_plots</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">p_1</span>, <span class="va">p_2</span><span class="op">)</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/save_plot.html">save_plot</a></span><span class="op">(</span><span class="va">tableplot_6.6</span>, filename <span class="op">=</span> <span class="st">"C:/Users/hafiznij/Downloads/abb6_6_workshop.pdf"</span>, width <span class="op">=</span> <span class="fl">320</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="plot-erstellung-1" class="slide level2"><h2>Plot-Erstellung</h2>
+</section><section id="plot-settings-3" class="slide level2"><h2>Plot-Settings</h2>
+</section><section id="kleines-markdownhtml-1x1" class="slide level2"><h2>Kleines Markdown/HTML-1x1</h2>
+<ul>
+<li>
+<strong>Das ist mein fettgedruckter Text</strong>: <code>**Das ist mein fettgedruckter Text**</code>
+</li>
+<li>
+<em>Das ist mein Kursiver Text</em>: <code>*Das ist mein Kursiver Text*</code>
+</li>
+<li>Hochgestelltes<sup>a</sup>: <code>Hochgestelltes&lt;sup&gt;a&lt;/sup&gt;</code>
+</li>
+<li>Tiefgestelltes<sub>yaay</sub>: <code>Tiefgestelltes&lt;sub&gt;yaay&lt;/sub&gt;</code>
+</li>
+</ul></section><section id="schleife" class="slide level2"><h2>Schleife</h2>
+<div class="cell">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_plot_6.6</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">plot_dat</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="co">## Plot-Erstellung hier rein</span></span>
+<span>  <span class="va">p_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://nickhaf.github.io/eatPlot/reference/plot_tablebarplot.html">plot_tablebarplot</a></span><span class="op">(</span></span>
+<span>  dat <span class="op">=</span> <span class="va">plot_dat</span></span>
+<span>  <span class="co">## , ...</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plots_6.6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">eatRep_kb_list</span>, <span class="va">my_plot_6.6</span> <span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
