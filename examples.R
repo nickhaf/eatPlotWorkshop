@@ -155,3 +155,33 @@ bar_pattern_spacing_stand <- standardize_pattern_spacing(list(p_1, p_2), pattern
 tableplot_6.6 <- combine_plots(list(p_1, p_2))
 
 save_plot(tableplot_6.6, filename = "C:/Users/hafiznij/Downloads/abb_6.6.pdf", width = 320)
+
+
+
+# Tabelle 6.6 mit Nested output -------------------------------------------
+kap_06 <- readRDS("i:/Methoden/02_IQB-interne_eat_Workshops/eatRep_2024/Beispieloutputs/05_disparitaeten.rds")
+
+## Let's take a look:
+str(kap_06)
+
+## Wir haben mehrere kompetenzbereiche:
+names(kap_06)
+
+## Ich würde empfehlen, den Plot am Anfang anhand eines Bereichs zu bauen, und dann einfach in eine Schleife zu packen. Let's start with "hoeren":
+kap_06$hoeren
+
+## 1. Zuerst suche ich mir eine Passende Voralge von der Webseite aus: https://nickhaf.github.io/eatPlot/articles/tableplots.html
+## Wir haben Glück, Abbildung 6.6 gibts schon! Ich kann mir also die Datenaufbereitung einfach herunterkopieren und durch meine Daten austauschen.
+## Dafür muss ich zuerst herausfinden, wie meine Gruppierungsvariable heißt. Am einfachsten kann ich das über den group oder den plain Data.frame herausfinden:
+str(kap_06$hoeren$group)
+
+## Meine Gruppierungsvariable heißt "Kgender".
+
+dat_6.6 <- prep_tablebarplot(
+  kap_06$hoeren,
+  subgroup_var = "Kgender",
+  par = c("mean", "sd") ## We need both mean and sd for the plot
+)
+
+
+
