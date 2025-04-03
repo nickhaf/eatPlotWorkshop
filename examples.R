@@ -468,12 +468,14 @@ plot_6.6 <- function(dat_prepped) {
   tableplot_6.6 <- combine_plots(list(p_1, p_2))
 
   save_plot(tableplot_6.6,
-    filename = paste0("C:/Users/hafiznij/Downloads/abb_6.6_",
+    filename = paste0(
+      "C:/Users/hafiznij/Downloads/abb_6.6_",
       unique(dat_prepped$kb),
-      ".pdf"),
-      width = 235,
-      height = 130,
-      scaling = 1
+      ".pdf"
+    ),
+    width = 235,
+    height = 130,
+    scaling = 1
   )
 
   return(tableplot_6.6)
